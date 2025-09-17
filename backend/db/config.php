@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost'; 
-$dbname = 'bsfe'; 
-$username = 'root'; 
-$password = ''; 
+$host = 'srv1580.hstgr.io';
+$dbname = 'u433704782_bsfe'; 
+$username = 'u433704782_nathan_le_dev';
+$password = 'Nathan_et_Junior_1607_09_09_mdp_@_#';
 
 try {
     // Créer une connexion PDO

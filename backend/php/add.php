@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $existingCount = $checkStmt->fetchColumn();
 
         if ($existingCount > 0) {
-            $_SESSION['error_message'] = "Erreur : Une épreuve avec le nom '$nom' existe déjà. Veuillez choisir un autre nom.";
-            header("Location: ../../dashboard/add.php");
+            $_SESSION['error_message'] = "❌ Erreur : Une épreuve avec le nom '$nom' existe déjà. Veuillez choisir un nom différent pour éviter les doublons.";
+            header("Location: ../../add.php");
             exit();
         }
 
@@ -39,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $file_extension = strtolower($file_info['extension']);
 
         if (!in_array($file_extension, $allowed_extensions)) {
-            $_SESSION['error_message'] = "Erreur : Seuls les fichiers PDF sont autorisés.";
-            header("Location: ../../dashboard/add.php");
+            $_SESSION['error_message'] = "❌ Erreur : Format de fichier non autorisé. Seuls les fichiers PDF sont acceptés. Votre fichier était de type : $file_extension";
+            header("Location: ../../add.php");
             exit();
         }
 
@@ -69,22 +69,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Exécuter la requête
             if ($stmt->execute()) {
-                echo "L'épreuve a été ajoutée avec succès.";
-                header('Location: ../../dashboard/add.php');
+                $_SESSION['success_message'] = "✅ Succès ! L'épreuve '$nom' a été ajoutée avec succès à la base de données.";
+                header('Location: ../../add.php');
                 exit();
             } else {
-                $_SESSION['error_message'] = "Erreur lors de l'ajout de l'épreuve.";
-                header("Location: ../../dashboard/add.php");
+                $_SESSION['error_message'] = "❌ Erreur : Impossible d'enregistrer l'épreuve dans la base de données. Veuillez réessayer.";
+                header("Location: ../../add.php");
                 exit();
             }
         } else {
-            $_SESSION['error_message'] = "Erreur lors de l'upload du fichier.";
-            header("Location: ../../dashboard/add.php");
+            $_SESSION['error_message'] = "❌ Erreur lors de l'upload du fichier. Vérifiez que le fichier n'est pas corrompu et que sa taille ne dépasse pas 10 MB.";
+            header("Location: ../../add.php");
             exit();
         }
     } else {
-        $_SESSION['error_message'] = "Tous les champs sont requis.";
-        header("Location: ../../dashboard/add.php");
+        $_SESSION['error_message'] = "❌ Erreur : Tous les champs du formulaire sont obligatoires. Veuillez remplir tous les champs avant de soumettre.";
+        header("Location: ../../add.php");
         exit();
     }
 }

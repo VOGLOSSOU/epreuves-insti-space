@@ -20,11 +20,19 @@
                     Accueil
                 </a>
                 <span class="breadcrumb-separator">/</span>
-                <span class="breadcrumb-item">Départements</span>
+                <span class="breadcrumb-item">Epreuves</span>
             </div>
 
             <!-- Titre de la section -->
             <h1 class="department-title">Explorez les Départements</h1>
+
+            <!-- Bouton d'ajout d'épreuve -->
+            <div class="add-resource-section">
+                <a href="add.php" class="add-resource-btn">
+                    <i class="fas fa-plus"></i>
+                    Ajouter une Épreuve
+                </a>
+            </div>
 
             <!-- Grille des départements -->
             <div class="departments-grid">

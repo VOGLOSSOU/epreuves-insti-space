@@ -27,8 +27,8 @@ require 'backend/php/exams/ge_fc.php';
                         Accueil
                     </a>
                     <span class="breadcrumb-separator">/</span>
-                    <a href="departments.php" class="breadcrumb-item">
-                        Départements
+                    <a href="epreuves.php" class="breadcrumb-item">
+                        Epreuves
                     </a>
                     <span class="breadcrumb-separator">/</span>
                     <span class="breadcrumb-item">Espace Froid & Climatisation</span>

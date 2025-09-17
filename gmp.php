@@ -27,8 +27,8 @@ require 'backend/php/exams/gmp.php';
                         Accueil
                     </a>
                     <span class="breadcrumb-separator">/</span>
-                    <a href="departments.php" class="breadcrumb-item">
-                        Départements
+                    <a href="epreuves.php" class="breadcrumb-item">
+                        Epreuves
                     </a>
                     <span class="breadcrumb-separator">/</span>
                     <span class="breadcrumb-item">Espace Génie Mécanique & Productique</span>
