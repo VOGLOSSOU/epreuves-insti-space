@@ -281,6 +281,7 @@ document.querySelector('.upload-form').addEventListener('submit', function(e) {
 });
 </script>
 
+<script src="scripts.js"></script>
 <?php include 'includes/footer.php' ?>
 </body>
 </html>
