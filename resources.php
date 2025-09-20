@@ -58,56 +58,45 @@ require 'backend/php/ressources/get_ressources.php';
             </div>
         </div>
 
-        <!-- Section Meilleurs Contributeurs - Version Marketing Ultra-Dynamique -->
+        <!-- Section Meilleurs Contributeurs - Version Simple et Humaine -->
         <?php
         $topContributors = getTopContributors($pdo, 3);
         if (!empty($topContributors)):
         ?>
-        <div class="contributors-banner">
+        <div class="contributors-section">
             <div class="contributors-content">
                 <div class="contributors-header">
-                    <div class="contributors-badge">
-                        <i class="fas fa-crown"></i>
-                        <span>ÉLITE</span>
-                    </div>
-                    <div class="contributors-main-text">
-                        <div class="contributors-highlight">
-                            <strong><?php echo count($topContributors); ?> HÉROS</strong> ont déjà rejoint la révolution !
+                    <h3>Nos meilleurs contributeurs</h3>
+                    <p class="contributors-subtitle">
+                        Ces étudiants ont aidé des centaines de leurs camarades en partageant leurs ressources.
+                    </p>
+                </div>
+
+                <div class="contributors-list">
+                    <?php foreach ($topContributors as $index => $contributor): ?>
+                        <div class="contributor-card">
+                            <div class="contributor-info">
+                                <div class="contributor-name"><?php echo htmlspecialchars($contributor['nom_contributeur']); ?></div>
+                                <div class="contributor-stats">
+                                    <?php echo $contributor['total_contributions']; ?> ressource<?php echo $contributor['total_contributions'] > 1 ? 's' : ''; ?> partagée<?php echo $contributor['total_contributions'] > 1 ? 's' : ''; ?>
+                                </div>
+                            </div>
+                            <div class="contributor-rank">
+                                #<?php echo $index + 1; ?>
+                            </div>
                         </div>
-                        <div class="contributors-names">
-                            <?php
-                            foreach ($topContributors as $index => $contributor) {
-                                $medals = ['🥇', '🥈', '🥉'];
-                                $medal = isset($medals[$index]) ? $medals[$index] : '🏅';
-                                echo '<span class="hero-name">' . $medal . ' ' . htmlspecialchars($contributor['nom_contributeur']) . '</span>';
-                                if ($index < count($topContributors) - 1) echo ' • ';
-                            }
-                            ?>
-                            <span class="and-more">+ d'autres légendes...</span>
-                        </div>
-                    </div>
-                </div>f
-                <div class="contributors-action">
-                    <div class="contributors-challenge">
-                        <div class="challenge-text">
-                            🎯 <strong>TON TOUR DE BRILLER !</strong>
-                        </div>
-                        <div class="challenge-subtitle">
-                            Partage tes ressources et deviens une star !
-                        </div>
-                    </div>
-                    <a href="upload-resource.php" class="contributors-cta-btn">
-                        <span class="btn-text">JE REJOINS L'ÉLITE</span>
-                        <i class="fas fa-rocket"></i>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="contributors-footer">
+                    <p>
+                        <strong>Vous aussi, vous pouvez aider vos camarades !</strong><br>
+                        Partagez vos cours, vos notes, vos projets... Chaque contribution compte.
+                    </p>
+                    <a href="upload-resource.php" class="share-btn">
+                        Partager une ressource
                     </a>
                 </div>
-            </div>
-            <div class="contributors-sparkles">
-                <div class="sparkle">✨</div>
-                <div class="sparkle">⭐</div>
-                <div class="sparkle">🌟</div>
-                <div class="sparkle">💫</div>
-                <div class="sparkle">🎇</div>
             </div>
         </div>
         <?php endif; ?>
