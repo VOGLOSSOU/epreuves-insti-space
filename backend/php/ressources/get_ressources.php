@@ -163,4 +163,25 @@ function incrementViews($resourceId, $pdo) {
         error_log("Erreur increment views: " . $e->getMessage());
     }
 }
+
+// Fonction pour récupérer les meilleurs contributeurs
+function getTopContributors($pdo, $limit = 3) {
+    try {
+        // Utiliser exactement la même requête que le test manuel
+        $sql = "SELECT nom_contributeur, COUNT(*) as total_contributions FROM ressources GROUP BY nom_contributeur ORDER BY total_contributions DESC LIMIT ?";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Log pour déboguer
+        error_log("getTopContributors: " . count($result) . " contributeurs trouvés");
+
+        return $result;
+    } catch (PDOException $e) {
+        error_log("Erreur getTopContributors: " . $e->getMessage());
+        return [];
+    }
+}
 ?>
